@@ -1,0 +1,37 @@
+<div class="container-fluid">
+<h1 class="text-center"> Tareas de <%= current_user.email %> </h1><br>
+
+<% @todos.each_slice(3) do |todos| %>
+    <div class="row justify-content-center">
+        <% todos.each do |todo| %>
+            <% if todo.completed? %>
+            <div class="card">
+                <div class="card-img-top">
+                    <%= image_tag  todo.task.image %>
+                </div>
+                <div class="card-body">
+                 <h4 class="card-text"> <%= todo.task.name %></h4>
+                 <%= link_to  "Descompletar", update_todo_path(todo), method: :patch, class: 'btn btn-info' %>
+                 <%= link_to  "Detalles", show_todo_path(todo), class: 'btn btn-info' %>
+                 </div>
+            </div><br>
+                <% else %>
+
+                   <div class="card">
+                        <div class="card-img-top">
+                            <%= image_tag  todo.task.image, style:'filter:grayscale(100%)' %>
+                         </div>
+                         <div class="card-body">
+                            <h4 class="card-text"> <%= todo.task.name %></h4>
+                            <%= link_to  "Completar", update_todo_path(todo), method: :patch, class: 'btn btn-info'  %>
+                            <%= link_to  "Detalles", show_todo_path(todo), class: 'btn btn-info' %>
+                        </div>
+
+                    </div><br>
+            <% end %><br>
+           
+        <% end %>
+    </div><br>
+<% end %>
+</div>
+

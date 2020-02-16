@@ -1,0 +1,23 @@
+<div class="container-fluid">
+<h1 class="text-center"> Tareas </h1>
+
+<% @tasks.each_slice(3) do |tasks| %>
+    <div class="row justify-content-center">
+        <% tasks.each do |task| %>
+            <div class="card">
+                <div class="card-img-top">
+                    <%= image_tag  task.image %>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-text"> <%= task.name %></h4>
+               
+                 <%= link_to  "Completar", todos_path, class: 'btn btn-info'  %>
+                </div>
+                
+                <br>
+            </div>
+        <% end %>
+    </div>
+<% end %>
+</div>
+
